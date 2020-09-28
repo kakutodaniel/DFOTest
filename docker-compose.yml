@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+    dfo-api:
+        image: dfo-api
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 3000:80
+        networks:
+            - dfo-network        
+    dfo-web:
+        image: dfo-web
+        build:
+            context: ./DFO-Test-Web
+            dockerfile: Dockerfile
+        ports:
+            - 4200:80
+        networks:
+            - dfo-network
+networks:
+    dfo-network:
+        driver: bridge
