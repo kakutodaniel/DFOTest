@@ -1,0 +1,51 @@
+<ngb-alert [type]="alertType" [hidden]="message === null" innerHTML="{{message}}"></ngb-alert>
+
+<form class="form-horizontal" [formGroup]="form">
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="name" class="control-label required">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Enter your name"
+        formControlName="name"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="age" class="control-label required">Age</label>
+      <input
+        type="number"
+        class="form-control"
+        id="age"
+        placeholder="Enter your age"
+        formControlName="age"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="address" class="control-label required">Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="address"
+        placeholder="Enter your address"
+        formControlName="address"
+      />
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="!form.valid || form.pristine || saving"
+    (click)="save()"
+  >
+    Submit
+  </button>
+</form>
+
+<ngx-spinner></ngx-spinner>
