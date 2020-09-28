@@ -4,7 +4,7 @@ This solution was built with [Angular CLI](https://github.com/angular/angular-cl
 
 ## Development server
 
-If you are using Docker, you can run the command `docker-compose up -d` at the root of the project. If things go well, the API will serve in `http://localhost:3000` and Web application in `http://localhost:4200`. You will not need do anything else.
+If you are using Docker, you can run the command `docker-compose up -d` at the root of the project. If things go well, the API will serve in `http://localhost:3000` and Web application in `http://localhost:4200`. You will not need do anything else. It will take about 8 minutes.
 
 For API debugging mode, you open `DKakuto.DFO.Test.sln` in `Visual Studio` and run `(F5)` the application (the API should be running on port 3000).
 
