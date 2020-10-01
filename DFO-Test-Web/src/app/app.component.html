@@ -308,15 +308,23 @@
   />
   <span style="padding-right: 30px;">Welcome guest!</span>
 
-  <ul ngbNav  class="nav-tabs">
-    <li class="ng-star-inserted">
-      <a class="nav-link" href="/" title="Home"
-        ><span class="nav-link-inner" style="color: white;">Home</span></a
+  <ul ngbNav class="nav-tabs">
+    <li
+      class="ng-star-inserted"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a class="nav-link" routerLink="/" title="Home"
+        ><span class="nav-link-inner">Home</span></a
       >
     </li>
-    <li class="ng-star-inserted">
-      <a class="nav-link" href="/users" title="Users"
-        ><span class="nav-link-inner" style="color: white;">Users</span></a
+    <li
+      class="ng-star-inserted"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a class="nav-link" routerLink="/users" title="Users"
+        ><span class="nav-link-inner">Users</span></a
       >
     </li>
   </ul>
