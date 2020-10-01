@@ -14,6 +14,7 @@ import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
 
 import { ApiService } from './services/api.service';
 import { AlertComponent } from './alert/alert.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AlertComponent } from './alert/alert.component';
     UserComponent,
     AddEditUserComponent,
     AlertComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
