@@ -8,7 +8,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-import { User } from '../models/user';
+import { IUser } from '../models/user';
 import { Resp } from '../models/resp';
 
 const API_URL = environment.apiUrl;
@@ -27,30 +27,30 @@ export class ApiService {
   };
 
   // get all users
-  getUsers(): Observable<User[]> {
+  getUsers(): Observable<IUser[]> {
     return this.httpClient
-      .get<User[]>(this.url)
+      .get<IUser[]>(this.url)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   // get by hashId
-  getUserById(hashId: string): Observable<User> {
+  getUserById(hashId: string): Observable<IUser> {
     return this.httpClient
-      .get<User>(this.url + '/' + hashId)
+      .get<IUser>(this.url + '/' + hashId)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   // save new user
-  saveUser(user: User): Observable<User> {
+  saveUser(user: IUser): Observable<IUser> {
     return this.httpClient
-      .post<User>(this.url, JSON.stringify(user), this.httpOptions)
+      .post<IUser>(this.url, JSON.stringify(user), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   // update a user
-  updateUser(user: User): Observable<User> {
+  updateUser(user: IUser): Observable<IUser> {
     return this.httpClient
-      .put<User>(
+      .put<IUser>(
         this.url + '/' + user.hashId,
         JSON.stringify(user),
         this.httpOptions

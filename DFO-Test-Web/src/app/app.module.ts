@@ -13,9 +13,15 @@ import { UserComponent } from './user/user.component';
 import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
 
 import { ApiService } from './services/api.service';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
-  declarations: [AppComponent, UserComponent, AddEditUserComponent],
+  declarations: [
+    AppComponent,
+    UserComponent,
+    AddEditUserComponent,
+    AlertComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,7 +30,7 @@ import { ApiService } from './services/api.service';
     FormsModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],

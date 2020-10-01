@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { ApiService } from '../services/api.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-user',
@@ -15,6 +16,8 @@ import { ApiService } from '../services/api.service';
 export class AddEditUserComponent implements OnInit {
   id: string;
   form: FormGroup;
+  subscriptionGet: Subscription;
+  subscriptionSave: Subscription;
   message = null;
   alertType = 'info';
   saving = false;
@@ -44,7 +47,7 @@ export class AddEditUserComponent implements OnInit {
   }
 
   getUserById() {
-    this.userService
+    this.subscriptionGet = this.userService
       .getUserById(this.id)
       .subscribe(
         (users: any) => {
@@ -76,7 +79,7 @@ export class AddEditUserComponent implements OnInit {
     this.spinner.show();
 
     if (this.id !== undefined) {
-      this.userService
+      this.subscriptionSave = this.userService
         .updateUser(this.form.value)
         .subscribe(
           () => {
@@ -103,7 +106,7 @@ export class AddEditUserComponent implements OnInit {
           this.spinner.hide();
         });
     } else {
-      this.userService
+      this.subscriptionSave = this.userService
         .saveUser(this.form.value)
         .subscribe(
           () => {
@@ -130,5 +133,12 @@ export class AddEditUserComponent implements OnInit {
           this.spinner.hide();
         });
     }
+  }
+
+  ngOnDestroy() {
+    console.log('destroying add/edit....');
+    this.subscriptionGet?.unsubscribe();
+    this.subscriptionSave?.unsubscribe();
+
   }
 }

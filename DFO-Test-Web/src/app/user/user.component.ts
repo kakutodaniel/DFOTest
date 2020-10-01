@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { ApiService } from '../services/api.service';
-import { User } from '../models/user';
+import { IUser } from '../models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -11,10 +12,11 @@ import { User } from '../models/user';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
-  users: User[];
-  cloneUsers: User[];
+  users: IUser[];
+  cloneUsers: IUser[];
+  subscription: Subscription;
   message = null;
-  alertType = "info";
+  alertType = 'info';
 
   constructor(
     private userService: ApiService,
@@ -27,7 +29,7 @@ export class UserComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService
+    this.subscription = this.userService
       .getUsers()
       .subscribe(
         (users: any) => {
@@ -36,9 +38,9 @@ export class UserComponent implements OnInit {
         },
         (err) => {
           if (err.statusCode === 0) {
-            this.alertType = "danger"
+            this.alertType = 'danger';
           } else {
-            this.alertType = "warning"
+            this.alertType = 'warning';
           }
           this.message = err.message;
           setTimeout(() => {
@@ -58,5 +60,15 @@ export class UserComponent implements OnInit {
     this.users = this.users.filter(
       (x) => x.name.includes(filterValue) || x.address.includes(filterValue)
     );
+  }
+
+  ngOnDestroy() {
+    console.log('destoying....');
+    this.subscription?.unsubscribe()
+  }
+
+  onNotify(data: any) {
+    console.log(data);
+    alert("I've been notified!!");
   }
 }
